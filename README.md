@@ -6,6 +6,7 @@
 # A Small HTTP Request Component / 轻量级 HTTP 请求组件
 
 教程 https://framework.ajaxjs.com/docs/aj/
+Java Documents: https://dev.ajaxjs.com/docs/javadoc/aj-net/
 
 # Install
 

@@ -103,10 +103,7 @@ public class Post extends Base implements HttpConstants {
      * POST 请求
      *
      * @param url    请求目标地址
-     * @param params 请求参数，可以是
-     *               <pre>byte[]、String、Map&lt;String, Object&gt;</pre>
-     *               <p>
-     *               类型，实际表示了表单数据 KeyValue 的请求数据
+     * @param params 请求参数，可以是 <pre>byte[]、String、Map&lt;String, Object&gt;</pre><p> 类型，实际表示了表单数据 KeyValue 的请求数据
      * @param fn     自定义 HTTP 头的时候可设置，可选的
      * @return 响应消息体
      */
@@ -148,6 +145,7 @@ public class Post extends Base implements HttpConstants {
      *
      * @param url    请求目标地址
      * @param params 请求参数，可以是<pre>byte[]、String、Map&lt;String, Object&gt;</pre>类型，实际表示了表单数据 KeyValue 的请求数据
+     * @return 响应消息体
      */
     public static ResponseEntity put(String url, Object params) {
         return put(url, params, null);
@@ -191,19 +189,44 @@ public class Post extends Base implements HttpConstants {
     }
 
     /**
+     * 使用POST方法向指定URL发送JSON格式的数据，并返回服务器的响应。
+     * 此方法主要处理JSON数据的序列化和HTTP请求的发送，具体的请求细节可以通过回调函数fn进行定制。
      * POST JSON as RawBody
+     *
+     * @param url    请求的URL地址。
+     * @param params 要发送的参数，可以是任何Java对象，将会被序列化为JSON格式。
+     * @param fn     一个Consumer接口，用于定制HttpURLConnection的行为，例如设置请求头、请求方法等。
+     * @return 返回一个Map对象，包含服务器的响应数据。
      */
     public static Map<String, Object> apiJsonBody(String url, Object params, Consumer<HttpURLConnection> fn) {
         return api(url, toJsonStr(params), fn);
     }
 
     /**
+     * 使用PUT方法向指定URL发送JSON格式的数据，并返回服务器响应。
+     * 此方法将对象转换为JSON字符串作为请求的正文。
+     * 可以通过提供的Consumer接口对HttpURLConnection进行进一步的配置。
      * PUT JSON as RawBody
+     *
+     * @param url    请求的URL地址。
+     * @param params 要发送的参数，将被转换为JSON格式。
+     * @param fn     HttpURLConnection的消费者，用于自定义HTTP请求的配置，如设置请求头等。
+     * @return 返回一个Map对象，包含服务器的响应数据。
      */
     public static Map<String, Object> putJsonBody(String url, Object params, Consumer<HttpURLConnection> fn) {
         return putApi(url, toJsonStr(params), fn);
     }
 
+    /**
+     * 将对象转换为JSON字符串。
+     * 此方法主要用于将各种对象转换为JSON格式的字符串，以便于数据传输或存储。
+     * 它首先使用一个第三方库或工具将对象转换为JSON字符串，然后移除字符串中的所有换行符，以确保生成的JSON字符串只包含一行文本。这对于某些应用场景，如日志记录或网络传输，
+     * 是非常有用的，因为换行符可能会导致不必要的问题。
+     *
+     * @param params 要转换为JSON字符串的对象。这个对象可以是任何类型的实例，
+     *               只要该类型支持转换为JSON格式。
+     * @return 返回一个JSON字符串，表示给定对象的数据。
+     */
     static String toJsonStr(Object params) {
         String json = ConvertToJson.toJson(params);
         json = json.replaceAll("[\\r\\n]", ""); // 不要换行，否则会不承认这个格式

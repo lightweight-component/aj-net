@@ -109,6 +109,7 @@ public class SkipSSL {
 
     /**
      * 单次忽略
+     * @param conn 连接对象
      */
     public static void setSSL_Ignore(HttpsURLConnection conn) {
         conn.setSSLSocketFactory(getSocketFactory(null));
