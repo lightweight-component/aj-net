@@ -10,7 +10,7 @@ Java Documents: https://dev.ajaxjs.com/docs/javadoc/aj-net/
 
 # Install
 
-Requires Java 1.8+, Maven Snippets：
+Requires Java 1.8+, Maven Snippets:
 
 ```xml
 <dependency>
