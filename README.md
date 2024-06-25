@@ -5,9 +5,9 @@
 
 # A Small HTTP Request Component / 轻量级 HTTP 请求组件
 
-Tutorial: https://framework.ajaxjs.com/docs/aj/
+Tutorial: https://blog.csdn.net/zhangxin09/article/details/135539625.
 
-Java Documents: https://dev.ajaxjs.com/docs/javadoc/aj-net/
+Java Documents: https://dev.ajaxjs.com/docs/javadoc/aj-net/.
 
 # Install
 
@@ -17,6 +17,6 @@ Requires Java 1.8+, Maven Snippets:
 <dependency>
     <groupId>com.ajaxjs</groupId>
     <artifactId>aj-net</artifactId>
-    <version>xxx.xxx</version>
+    <version>1.3</version>
 </dependency>
 ```
