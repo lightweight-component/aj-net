@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class TestGet {
-//	@Test
+	@Test
 	public void testSimpleGet() {
 		String html = Get.simpleGET("https://www.baidu.com");
 		assertTrue(html.contains("百度一下，你就知道"));
